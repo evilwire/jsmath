@@ -48,7 +48,7 @@ function (arr, s)
       {
 	 newArr.push(arr[i] * s);
       }
-      return new newArr; 
+      return newArr; 
    }
 
    // for all the nuts out there who wants one-liners
@@ -113,7 +113,7 @@ function (nR, nC, rows)
     *    is given.
     *
     * @example -
-    *    var m1 = new Matrix([[1, 0],
+    *    var m1 = new _MEX.Matrix([[1, 0],
     *                         [0, 1]]);
     *    var r0 = m1.Entry(0);            // returns the first row
     *                                     // can also do m1.Entry(0, undefined);
@@ -151,7 +151,7 @@ function (nR, nC, rows)
       {
 	 rArr.push(scale(rows[i], s));
       }
-      return new Matrix(nR, nC, rArr);
+      return new _MEX.Matrix(nR, nC, rArr);
       /* <---- dd here
       // replace if you were dying reading the above
       return new Matrix(nR, nC,
@@ -217,7 +217,7 @@ function (nR, nC, rows)
 	    col.push(dot(rows[i], mat.Entry()));
 	 }
 
-	 return new Vector(col);
+	 return new _MEX.Vector(col);
       }
 
       // now handle a matrix
@@ -239,7 +239,7 @@ function (nR, nC, rows)
 	 }
 	 pRows.push(row);
       }
-      return new Matrix(nR, mat.GetColNum(), pRows);
+      return new _MEX.Matrix(nR, mat.GetColNum(), pRows);
    }
 },
 
@@ -329,7 +329,7 @@ function (entries)
     */
    this.Scale = function(s)
    {
-      return new Vector(scale(this.Entry(), s)); 
+      return new _MEX.Vector(scale(this.Entry(), s)); 
    }
 
    /** Add - returns a new <Vector> whose entries are equal to
@@ -353,7 +353,7 @@ function (entries)
       {
 	 newArr.push(this.Entry(i) + v.Entry(i));
       }
-      return new Vector(newArr);      
+      return new _MEX.Vector(newArr);      
    }
 
    /** Sub - returns a new <Vector> equal to this element 
@@ -368,6 +368,15 @@ function (entries)
    this.Sub = function(v)
    {
       return this.Add(v.Scale(-1));
+   }
+
+   /** NormSq - returns the square of the norm of this Vector.
+    *
+    * @returns - the square of the normal of this Vector.
+    */
+   this.Norm = function()
+   {
+      return this.Dot(this);
    }
 }
 
